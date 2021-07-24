@@ -46,3 +46,5 @@ while True:
             print("Logo is back.")
             
             toggle_video()
+    # Wait a bit to not hammer the system.
+    time.sleep(2)

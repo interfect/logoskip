@@ -42,3 +42,8 @@ sudo apt-get install scrot
 
 6. To stop the script, switch to the terminal window it is running in and `ctrl+c` it.
 
+## Known issues
+
+1. Can't work with Wayland, because `scrot`, which PyAutoGui uses, doesn't work with Wayland. See [here](https://github.com/asweigart/pyautogui/issues/280) and maybe [also here](https://github.com/asweigart/pyautogui/issues/556).
+
+
