@@ -10,6 +10,8 @@ def has_rings():
     Determine if we can see the ring logo.
     """
     pos = pyautogui.locateOnScreen('rings.png', confidence=0.5)
+    if not pos:
+    	pos = pyautogui.locateOnScreen('rings2.png', confidence=0.5)
     print(f"Found at: {pos}")
     return pos is not None
     
@@ -19,7 +21,7 @@ def skip_ahead():
     """
     print("Skipping forward")
     pyautogui.press('l')
-    time.sleep(1)
+    time.sleep(2)
     
 def toggle_video():
     """
@@ -39,12 +41,12 @@ while True:
             # Probably a commercial
             
             # Stop the video
-            toggle_video()
+            #toggle_video()
             
             while not has_rings():
                 skip_ahead()
             print("Logo is back.")
             
-            toggle_video()
+            #toggle_video()
     # Wait a bit to not hammer the system.
     time.sleep(2)
