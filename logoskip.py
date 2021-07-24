@@ -15,6 +15,16 @@ def has_rings():
     print(f"Found at: {pos}")
     return pos is not None
     
+def is_too_blank():
+    """
+    Determine if the screen is suspiciously blank.
+    
+    This will happen if we skip ahead past what is buffered, and it won't be
+    fixed until we start playback again.
+    """
+    pos = pyautogui.locateOnScreen('tooblank.png')
+    return pos is not None
+    
 def skip_ahead():
     """
     Skip the player ahead.
@@ -41,12 +51,21 @@ while True:
             # Probably a commercial
             
             # Stop the video
-            #toggle_video()
+            toggle_video()
             
             while not has_rings():
                 skip_ahead()
+                if is_too_blank():
+                    # We need to get the video back
+                    print("Video has gone away")
+                    toggle_video()
+                    while is_too_blank():
+                        # We need to get the video back
+                        time.sleep(2)
+                    print("Video has come back")
+                    toggle_video()
             print("Logo is back.")
             
-            #toggle_video()
+            toggle_video()
     # Wait a bit to not hammer the system.
     time.sleep(2)
